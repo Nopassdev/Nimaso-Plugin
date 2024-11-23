@@ -40,7 +40,7 @@ export const FormList: FC<Props> = ({
           <div>
             <HeaderCell className="w-[10%]">序号</HeaderCell>
             <HeaderCell className="w-[25%] justify-start">名称</HeaderCell>
-            <HeaderCell className="w-[15%]">分类</HeaderCell>
+            <HeaderCell className="w-[15%] justify-start">分类</HeaderCell>
             <HeaderCell className="w-[15%]">状态</HeaderCell>
             <HeaderCell className="w-[15%] justify-start">简码</HeaderCell>
             <HeaderCell className="w-[20%]">操作</HeaderCell>
@@ -111,7 +111,7 @@ const BodyRow: FC<BodyRowProps> = ({ form }) => {
     <div className="flex odd:bg-transparent even:bg-smoke200">
       <BodyCell className="w-[10%]">{form.serialNumber}</BodyCell>
       <BodyCell className="w-[25%] justify-start">{form.name}</BodyCell>
-      <BodyCell className="w-[15%]">{form.category}</BodyCell>
+      <BodyCell className="w-[15%] justify-start">{form.category}</BodyCell>
       <BodyCell className={cn('w-[15%]', { 'text-red': form.state === 0 })}>
         {form.state === 0 ? (
           <>

@@ -1,4 +1,4 @@
-import { fakerZH_TW } from '@faker-js/faker'
+import { fakerZH_CN } from '@faker-js/faker'
 import type { Form } from '@prisma/client'
 
 import { PaginatedData } from '@/lib/types'
@@ -8,10 +8,10 @@ export type FormModel = Form
 
 const fakeData = new Array(100).fill(0).map<FormModel>((_, idx) => {
   return {
-    id: fakerZH_TW.database.mongodbObjectId(),
-    category: fakerZH_TW.commerce.productAdjective(),
-    name: fakerZH_TW.commerce.product(),
-    shortCode: fakerZH_TW.database.mongodbObjectId(),
+    id: fakerZH_CN.database.mongodbObjectId(),
+    category: fakerZH_CN.commerce.productAdjective(),
+    name: fakerZH_CN.commerce.product(),
+    shortCode: fakerZH_CN.database.mongodbObjectId(),
     state: Math.random() > 0.5 ? 0 : 1,
     serialNumber: idx,
   }
