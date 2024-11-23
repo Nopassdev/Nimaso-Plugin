@@ -58,7 +58,8 @@ const Item: FC<ItemProps> = ({ icon, label, isActive, href }) => {
     <Link
       to={href}
       className={cn(
-        'mt-5 flex w-full flex-col items-center justify-center py-4',
+        'group mt-5 flex w-full flex-col items-center justify-center py-4',
+        'hover:bg-amber',
         isActive ? 'bg-amber' : ''
       )}
     >
@@ -67,6 +68,7 @@ const Item: FC<ItemProps> = ({ icon, label, isActive, href }) => {
       <span
         className={cn(
           'mt-1.5 text-base',
+          'group-hover:text-black',
           isActive ? 'text-black' : 'text-white'
         )}
       >
