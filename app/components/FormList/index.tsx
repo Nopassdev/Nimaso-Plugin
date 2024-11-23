@@ -57,9 +57,9 @@ export const FormList: FC<Props> = ({
 
           <div className="mt-20 flex justify-center">
             <Pagination
-              currentPage={page + 1}
+              currentPage={page}
               totalPage={totalPage}
-              onChange={(newP) => onChangePage?.(newP - 1)}
+              onChange={(newP) => onChangePage?.(newP)}
             />
           </div>
         </div>

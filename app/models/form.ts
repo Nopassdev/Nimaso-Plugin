@@ -18,10 +18,15 @@ const fakeData = new Array(100).fill(0).map<FormModel>((_, idx) => {
 })
 
 export const getManyForms = async (
-  page = 0,
+  page = 1,
   limit = 15
 ): Promise<PaginatedData<FormModel>> => {
-  const data = fakeData.slice(limit * page, limit + limit * page)
+  const indexedZeroPage = Math.max(page - 1, 0)
+
+  const data = fakeData.slice(
+    limit * indexedZeroPage,
+    limit + limit * indexedZeroPage
+  )
   const total = fakeData.length
 
   return {
@@ -38,7 +43,7 @@ export const getManyForms = async (
   //   orderBy: {
   //     id: 'asc',
   //   },
-  //   skip: page * limit,
+  //   skip: indexedZeroPage * limit,
   // })
 
   // return {
