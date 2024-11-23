@@ -11,7 +11,7 @@ const fakeData = new Array(100).fill(0).map<FormModel>((_, idx) => {
     id: fakerZH_CN.database.mongodbObjectId(),
     category: fakerZH_CN.commerce.productAdjective(),
     name: fakerZH_CN.commerce.product(),
-    shortCode: fakerZH_CN.database.mongodbObjectId(),
+    shortCode: fakerZH_CN.database.mongodbObjectId().slice(0, 10),
     state: Math.random() > 0.5 ? 0 : 1,
     serialNumber: idx,
   }
