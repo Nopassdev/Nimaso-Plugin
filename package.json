@@ -1,5 +1,5 @@
 {
-  "name": "Nimaso Form Plugin",
+  "name": "Nimaso-Form-Plugin",
   "private": true,
   "sideEffects": false,
   "type": "module",
@@ -44,6 +44,7 @@
     "zod": "^3.22.4"
   },
   "devDependencies": {
+    "@faker-js/faker": "^9.2.0",
     "@flydotio/dockerfile": "^0.4.11",
     "@ianvs/prettier-plugin-sort-imports": "^4.1.1",
     "@remix-run/dev": "^2.8.1",

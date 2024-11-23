@@ -10,6 +10,18 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model Form {
+  // AKA serial number
+  id           String @id @default(auto()) @map("_id") @db.ObjectId
+  serialNumber Int
+
+  name      String
+  category  String
+  // 0: stopped, 1: open
+  state     Int
+  shortCode String
+}
+
 model User {
   id                 String               @id @default(auto()) @map("_id") @db.ObjectId
   email              String               @unique
@@ -20,7 +32,7 @@ model User {
   createdAt          DateTime             @default(now())
   updatedAt          DateTime             @updatedAt
   verificationCodeId String?              @db.ObjectId
-  customerId   String?
+  customerId         String?
   PasswordResetToken PasswordResetToken[]
   VerificationCode   VerificationCode[]
   Subscription       Subscription[]
@@ -73,7 +85,7 @@ model PlanLimit {
 
 model Price {
   id            String         @id @default(auto()) @map("_id") @db.ObjectId
-  isActive        Boolean
+  isActive      Boolean
   currency      String
   interval      String
   nickname      String?
@@ -88,21 +100,21 @@ model Price {
 }
 
 model Subscription {
-  id                   String  @id @default(auto()) @map("_id") @db.ObjectId
-  isActive             Boolean
-  status               String
-  cancelAtPeriodEnd    Boolean
-  currentPeriodEnd     BigInt
-  currentPeriodStart   BigInt
-  interval             String
-  customerId           String
-  subscriptionId       String
-  planId               String  @db.ObjectId
-  plan                 Plan    @relation(fields: [planId], references: [id])
-  userId               String  @db.ObjectId
-  user                 User    @relation(fields: [userId], references: [id])
-  priceId              String  @db.ObjectId
-  price                Price   @relation(fields: [priceId], references: [id])
+  id                 String  @id @default(auto()) @map("_id") @db.ObjectId
+  isActive           Boolean
+  status             String
+  cancelAtPeriodEnd  Boolean
+  currentPeriodEnd   BigInt
+  currentPeriodStart BigInt
+  interval           String
+  customerId         String
+  subscriptionId     String
+  planId             String  @db.ObjectId
+  plan               Plan    @relation(fields: [planId], references: [id])
+  userId             String  @db.ObjectId
+  user               User    @relation(fields: [userId], references: [id])
+  priceId            String  @db.ObjectId
+  price              Price   @relation(fields: [priceId], references: [id])
 
   @@index([customerId], name: "customerId")
   @@index([subscriptionId], name: "subscriptionId")

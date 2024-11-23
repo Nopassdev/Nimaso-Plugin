@@ -32,7 +32,7 @@ const items = [
   {
     label: '表单',
     icon: <ListIcon />,
-    href: '/list',
+    href: '/forms',
   },
   {
     label: '分类',

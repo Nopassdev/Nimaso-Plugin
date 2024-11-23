@@ -34,7 +34,7 @@ export function App() {
         <Meta />
         <Links />
       </head>
-      <body className="h-full">
+      <body className="h-full bg-smoke100">
         <RootLayout>
           <Outlet />
         </RootLayout>
