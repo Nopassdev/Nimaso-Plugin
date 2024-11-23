@@ -112,7 +112,7 @@ const BodyRow: FC<BodyRowProps> = ({ form }) => {
       <BodyCell className="w-[10%]">{form.serialNumber}</BodyCell>
       <BodyCell className="w-[25%] justify-start">{form.name}</BodyCell>
       <BodyCell className="w-[15%]">{form.category}</BodyCell>
-      <BodyCell className={cn('w-[15%]')}>
+      <BodyCell className={cn('w-[15%]', { 'text-red': form.state === 0 })}>
         {form.state === 0 ? (
           <>
             <MinusOutlineIcon className="ml-4 mr-1 h-4 w-4 text-red" />
@@ -205,7 +205,7 @@ const Pagination: FC<PaginationProps> = ({
       >
         上一页
       </Button>
-      <div className="flex h-full items-center gap-2">
+      <div className="flex h-full w-[100px] items-center gap-2">
         {pageNumbers.map((pageN) => (
           <span
             key={pageN}
