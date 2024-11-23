@@ -14,7 +14,7 @@ export const CommonErrorBoundary = ({ renderError }: Props) => {
       {renderError ? (
         renderError(error)
       ) : (
-        <div className="p-4">
+        <div className='p-4'>
           Something went wrong. Please try refreshing page
         </div>
       )}

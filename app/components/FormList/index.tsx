@@ -14,6 +14,7 @@ type Props = {
   onCopy?: (formId: FormModel['id']) => void
   onRename?: (formId: FormModel['id']) => void
   onCreateForm?: () => void
+  onInspect?: (formId: FormModel['id']) => void
 }
 
 export const FormList: FC<Props> = ({
@@ -25,29 +26,34 @@ export const FormList: FC<Props> = ({
   page = 0,
   totalPage = 0,
   onChangePage,
+  onInspect,
 }) => {
   return (
-    <div className="h-full p-5">
-      <div className="h-full rounded-3xl bg-white px-8 py-5">
-        <div className="flex items-center justify-between">
-          <h2 className="text-lg font-bold">表单</h2>
+    <div className='h-full p-5'>
+      <div className='h-full rounded-3xl bg-white px-8 py-5'>
+        <div className='flex items-center justify-between'>
+          <h2 className='text-lg font-bold'>表单</h2>
 
-          <Button>创建表单</Button>
+          <Button onClick={onCreateForm}>创建表单</Button>
         </div>
 
         {/* TABLE */}
-        <div className="mt-8">
+        <div className='mt-8'>
           <div>
-            <HeaderCell className="w-[10%]">序号</HeaderCell>
-            <HeaderCell className="w-[25%] justify-start">名称</HeaderCell>
-            <HeaderCell className="w-[15%] justify-start">分类</HeaderCell>
-            <HeaderCell className="w-[15%]">状态</HeaderCell>
-            <HeaderCell className="w-[15%] justify-start">简码</HeaderCell>
-            <HeaderCell className="w-[20%]">操作</HeaderCell>
+            <HeaderCell className='w-[10%]'>序号</HeaderCell>
+            <HeaderCell className='w-[25%] justify-start'>名称</HeaderCell>
+            <HeaderCell className='w-[15%] justify-start'>分类</HeaderCell>
+            <HeaderCell className='w-[15%]'>状态</HeaderCell>
+            <HeaderCell className='w-[15%] justify-start'>简码</HeaderCell>
+            <HeaderCell className='w-[20%]'>操作</HeaderCell>
           </div>
           <div>
             {data.map((form) => (
-              <BodyRow key={form.id} form={form} />
+              <BodyRow
+                key={form.id}
+                form={form}
+                onClick={() => onInspect?.(form.id)}
+              />
             ))}
             {data.length < 15 &&
               new Array(15 - data.length).fill(0).map((_, idx) => {
@@ -55,7 +61,7 @@ export const FormList: FC<Props> = ({
               })}
           </div>
 
-          <div className="mt-20 flex justify-center">
+          <div className='mt-20 flex justify-center'>
             <Pagination
               currentPage={page}
               totalPage={totalPage}
@@ -104,35 +110,39 @@ const BodyCell: FC<BodyCellProps> = ({ children, className }) => {
 
 type BodyRowProps = {
   form: FormModel
+  onClick?: () => void
 }
 
-const BodyRow: FC<BodyRowProps> = ({ form }) => {
+const BodyRow: FC<BodyRowProps> = ({ form, onClick }) => {
   return (
-    <div className="flex odd:bg-transparent even:bg-smoke200">
-      <BodyCell className="w-[10%]">{form.serialNumber}</BodyCell>
-      <BodyCell className="w-[25%] justify-start">{form.name}</BodyCell>
-      <BodyCell className="w-[15%] justify-start">{form.category}</BodyCell>
+    <div
+      onClick={onClick}
+      className='flex cursor-pointer odd:bg-transparent even:bg-smoke200 hover:bg-smoke'
+    >
+      <BodyCell className='w-[10%]'>{form.serialNumber}</BodyCell>
+      <BodyCell className='w-[25%] justify-start'>{form.name}</BodyCell>
+      <BodyCell className='w-[15%] justify-start'>{form.category}</BodyCell>
       <BodyCell className={cn('w-[15%]', { 'text-red': form.state === 0 })}>
         {form.state === 0 ? (
           <>
-            <MinusOutlineIcon className="ml-4 mr-1 h-4 w-4 text-red" />
+            <MinusOutlineIcon className='ml-4 mr-1 h-4 w-4 text-red' />
             停用
           </>
         ) : (
           '活跃'
         )}
       </BodyCell>
-      <BodyCell className="w-[15%] justify-start py-2">
-        <span className="inline-flex h-full items-center rounded-sm border border-[#DDDDDD] px-6 py-3 text-sm">
+      <BodyCell className='w-[15%] justify-start py-2'>
+        <span className='inline-flex h-full items-center rounded-sm border border-[#DDDDDD] px-6 py-3 text-sm'>
           {form.shortCode}
         </span>
       </BodyCell>
-      <BodyCell className="w-[20%]">
-        <div className="flex gap-4 align-baseline">
-          <span className="cursor-pointer text-sm text-amber">激活</span>
-          <span className="cursor-pointer text-sm text-amber">重命名</span>
-          <span className="cursor-pointer text-sm text-amber">复制</span>
-          <span className="cursor-pointer text-sm text-red100">删除</span>
+      <BodyCell className='w-[20%]'>
+        <div className='flex gap-4 align-baseline'>
+          <span className='cursor-pointer text-sm text-amber'>激活</span>
+          <span className='cursor-pointer text-sm text-amber'>重命名</span>
+          <span className='cursor-pointer text-sm text-amber'>复制</span>
+          <span className='cursor-pointer text-sm text-red100'>删除</span>
         </div>
       </BodyCell>
     </div>
@@ -141,18 +151,18 @@ const BodyRow: FC<BodyRowProps> = ({ form }) => {
 
 const BodyRowPlaceholder = () => {
   return (
-    <div className="flex odd:bg-transparent even:bg-smoke200">
-      <BodyCell className="w-[10%]"></BodyCell>
-      <BodyCell className="w-[25%] justify-start"></BodyCell>
-      <BodyCell className="w-[15%]"></BodyCell>
+    <div className='flex odd:bg-transparent even:bg-smoke200'>
+      <BodyCell className='w-[10%]'></BodyCell>
+      <BodyCell className='w-[25%] justify-start'></BodyCell>
+      <BodyCell className='w-[15%]'></BodyCell>
       <BodyCell className={cn('w-[15%]')}></BodyCell>
-      <BodyCell className="w-[15%] py-2"></BodyCell>
-      <BodyCell className="w-[20%]">
-        <div className="flex gap-4 align-baseline">
-          <span className="cursor-pointer text-sm text-amber"></span>
-          <span className="cursor-pointer text-sm text-amber"></span>
-          <span className="cursor-pointer text-sm text-amber"></span>
-          <span className="cursor-pointer text-sm text-red100"></span>
+      <BodyCell className='w-[15%] py-2'></BodyCell>
+      <BodyCell className='w-[20%]'>
+        <div className='flex gap-4 align-baseline'>
+          <span className='cursor-pointer text-sm text-amber'></span>
+          <span className='cursor-pointer text-sm text-amber'></span>
+          <span className='cursor-pointer text-sm text-amber'></span>
+          <span className='cursor-pointer text-sm text-red100'></span>
         </div>
       </BodyCell>
     </div>
@@ -196,16 +206,16 @@ const Pagination: FC<PaginationProps> = ({
   }
 
   return (
-    <div className="flex items-center gap-9">
+    <div className='flex items-center gap-9'>
       <Button
         disabled={currentPage === 1}
-        variant="outline"
-        size="sm"
+        variant='outline'
+        size='sm'
         onClick={onPrevPage}
       >
         上一页
       </Button>
-      <div className="flex h-full w-[100px] items-center gap-2">
+      <div className='flex h-full w-[100px] items-center gap-2'>
         {pageNumbers.map((pageN) => (
           <span
             key={pageN}
@@ -214,11 +224,11 @@ const Pagination: FC<PaginationProps> = ({
             {pageN}
           </span>
         ))}
-        {hasTrailing && <span className="text-sm">...</span>}
+        {hasTrailing && <span className='text-sm'>...</span>}
       </div>
       <Button
         disabled={currentPage >= totalPage}
-        size="sm"
+        size='sm'
         onClick={onNextPage}
       >
         下一页

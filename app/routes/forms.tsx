@@ -1,4 +1,4 @@
-import { useLoaderData, useSearchParams } from '@remix-run/react'
+import { useLoaderData, useNavigate, useSearchParams } from '@remix-run/react'
 import { LoaderFunctionArgs } from '@remix-run/server-runtime'
 import { z } from 'zod'
 
@@ -17,7 +17,8 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
 
 export default function () {
   const { data, limit, page, total } = useLoaderData<typeof loader>()
-  const [search, setSearch] = useSearchParams({ page: '1' })
+  const [_, setSearch] = useSearchParams({ page: '1' })
+  const navigate = useNavigate()
 
   return (
     <FormList
@@ -25,6 +26,8 @@ export default function () {
       page={page}
       totalPage={Math.ceil(total / limit)}
       onChangePage={(newPage) => setSearch({ page: newPage.toString() })}
+      onCreateForm={() => navigate('/forms/create')}
+      onInspect={(id) => navigate(`/forms/detail/${id}`)}
     />
   )
 }

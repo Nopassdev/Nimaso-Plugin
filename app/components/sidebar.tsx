@@ -10,9 +10,9 @@ export const AppSidebar = () => {
   const { pathname } = useLocation()
 
   return (
-    <div className="h-full w-20 flex-shrink-0 flex-grow-0 bg-dark py-5">
-      <div className="mb-20 px-1">
-        <img src="/logo.png" />
+    <div className='h-full w-20 flex-shrink-0 flex-grow-0 bg-dark py-5'>
+      <div className='mb-20 px-1'>
+        <img src='/logo.png' />
       </div>
 
       {items.map(({ href, icon, label }) => (
@@ -21,7 +21,7 @@ export const AppSidebar = () => {
           href={href}
           icon={icon}
           label={label}
-          isActive={pathname === href}
+          isActive={pathname.startsWith(href)}
         />
       ))}
     </div>
@@ -63,7 +63,7 @@ const Item: FC<ItemProps> = ({ icon, label, isActive, href }) => {
         isActive ? 'bg-amber' : ''
       )}
     >
-      <span className="aspect-square w-[30px] text-white">{icon}</span>
+      <span className='aspect-square w-[30px] text-white'>{icon}</span>
 
       <span
         className={cn(
