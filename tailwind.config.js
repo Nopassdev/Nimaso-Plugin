@@ -1,4 +1,4 @@
-const defaultTheme = require("tailwindcss/defaultTheme")
+const defaultTheme = require('tailwindcss/defaultTheme')
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
@@ -12,17 +12,17 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        amber: "#D19C51",
-        black: "#000",
-        dark: "#231815",
-        white: "#FFF",
-        grey: "#666666",
-        smoke: "#F0F0F0",
+        amber: '#D19C51',
+        black: '#000',
+        dark: '#231815',
+        white: '#FFF',
+        grey: '#666666',
+        smoke: '#F0F0F0',
       },
     },
     fontSize: {
-      base: ["1rem", "1.3"],
+      base: ['1rem', '1.3'],
     },
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [require('tailwindcss-animate')],
 }

@@ -1,10 +1,10 @@
-import { FC, ReactNode } from "react"
-import { Link, useLocation, useNavigation } from "@remix-run/react"
+import { FC, ReactNode } from 'react'
+import { Link, useLocation, useNavigation } from '@remix-run/react'
 
-import { ApproveIcon } from "@/lib/assets/icons/approve"
-import { CategoryIcon } from "@/lib/assets/icons/category"
-import { ListIcon } from "@/lib/assets/icons/list"
-import { cn } from "@/lib/utils"
+import { ApproveIcon } from '@/lib/assets/icons/approve'
+import { CategoryIcon } from '@/lib/assets/icons/category'
+import { ListIcon } from '@/lib/assets/icons/list'
+import { cn } from '@/lib/utils'
 
 export const AppSidebar = () => {
   const { pathname } = useLocation()
@@ -30,19 +30,19 @@ export const AppSidebar = () => {
 
 const items = [
   {
-    label: "表单",
+    label: '表单',
     icon: <ListIcon />,
-    href: "/list",
+    href: '/list',
   },
   {
-    label: "分类",
+    label: '分类',
     icon: <CategoryIcon />,
-    href: "/categories",
+    href: '/categories',
   },
   {
-    label: "审批",
+    label: '审批',
     icon: <ApproveIcon />,
-    href: "/approve",
+    href: '/approve',
   },
 ]
 
@@ -58,16 +58,16 @@ const Item: FC<ItemProps> = ({ icon, label, isActive, href }) => {
     <Link
       to={href}
       className={cn(
-        "mt-5 flex w-full flex-col items-center justify-center py-4",
-        isActive ? "bg-amber" : ""
+        'mt-5 flex w-full flex-col items-center justify-center py-4',
+        isActive ? 'bg-amber' : ''
       )}
     >
       <span className="aspect-square w-[30px] text-white">{icon}</span>
 
       <span
         className={cn(
-          "mt-1.5 text-base",
-          isActive ? "text-black" : "text-white"
+          'mt-1.5 text-base',
+          isActive ? 'text-black' : 'text-white'
         )}
       >
         {label}
