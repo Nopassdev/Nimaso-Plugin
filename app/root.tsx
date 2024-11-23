@@ -5,13 +5,18 @@ import {
   Scripts,
   ScrollRestoration,
 } from "@remix-run/react"
+import { LinksFunction } from "@remix-run/server-runtime"
 import clsx from "clsx"
 
+import { RootLayout } from "./components/root-layout"
+import stylesheet from "./tailwind.css?url"
+
+export const links: LinksFunction = () => [
+  { rel: "stylesheet", href: stylesheet },
+]
 
 export default function AppWithProviders() {
-  return (
-      <App />
-  )
+  return <App />
 }
 
 export function App() {
@@ -30,7 +35,9 @@ export function App() {
         <Links />
       </head>
       <body className="h-full">
+        <RootLayout>
           <Outlet />
+        </RootLayout>
         <ScrollRestoration />
         <Scripts />
       </body>
