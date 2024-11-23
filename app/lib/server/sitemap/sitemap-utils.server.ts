@@ -1,9 +1,9 @@
 // This is adapted from https://github.com/kentcdodds/kentcdodds.com
 
-import type { ServerBuild } from "@remix-run/server-runtime"
-import isEqual from "lodash-es/isEqual.js"
+import type { ServerBuild } from '@remix-run/server-runtime'
+import isEqual from 'lodash-es/isEqual.js'
 
-import type { SEOHandle, SitemapEntry } from "./types"
+import type { SEOHandle, SitemapEntry } from './types'
 
 type Options = {
   siteUrl: string
@@ -11,17 +11,17 @@ type Options = {
 
 function typedBoolean<T>(
   value: T
-): value is Exclude<T, "" | 0 | false | null | undefined> {
+): value is Exclude<T, '' | 0 | false | null | undefined> {
   return Boolean(value)
 }
 
 function removeTrailingSlash(s: string) {
-  return s.endsWith("/") ? s.slice(0, -1) : s
+  return s.endsWith('/') ? s.slice(0, -1) : s
 }
 
 async function getSitemapXml(
   request: Request,
-  routes: ServerBuild["routes"],
+  routes: ServerBuild['routes'],
   options: Options
 ) {
   const { siteUrl } = options
@@ -35,9 +35,9 @@ async function getSitemapXml(
     return `
   <url>
     <loc>${siteUrl}${route}</loc>
-    ${lastmod ? `<lastmod>${lastmod}</lastmod>` : ""}
-    ${changefreq ? `<changefreq>${changefreq}</changefreq>` : ""}
-    ${typeof priority === "number" ? `<priority>${priority}</priority>` : ""}
+    ${lastmod ? `<lastmod>${lastmod}</lastmod>` : ''}
+    ${changefreq ? `<changefreq>${changefreq}</changefreq>` : ''}
+    ${typeof priority === 'number' ? `<priority>${priority}</priority>` : ''}
   </url>
     `.trim()
   }
@@ -45,7 +45,7 @@ async function getSitemapXml(
   const rawSitemapEntries = (
     await Promise.all(
       Object.entries(routes).map(async ([id, { module: mod }]) => {
-        if (id === "root") return
+        if (id === 'root') return
 
         const handle = mod.handle as SEOHandle | undefined
         if (handle?.getSitemapEntries) {
@@ -54,7 +54,7 @@ async function getSitemapXml(
 
         // exclude resource routes from the sitemap
         // (these are an opt-in via the getSitemapEntries method)
-        if (!("default" in mod)) return
+        if (!('default' in mod)) return
 
         const manifestEntry = routes[id]
 
@@ -69,14 +69,14 @@ async function getSitemapXml(
         if (manifestEntry.path) {
           path = removeTrailingSlash(manifestEntry.path)
         } else if (manifestEntry.index) {
-          path = ""
+          path = ''
         } else {
           return
         }
 
         while (parent) {
           // the root path is '/', so it messes things up if we add another '/'
-          const parentPath = parent.path ? removeTrailingSlash(parent.path) : ""
+          const parentPath = parent.path ? removeTrailingSlash(parent.path) : ''
 
           if (parent.path) {
             path = `${parentPath}/${path}`
@@ -90,8 +90,8 @@ async function getSitemapXml(
 
         // we can't handle dynamic routes, so if the handle doesn't have a
         // getSitemapEntries function, we just
-        if (path.includes(":")) return
-        if (id === "root") return
+        if (path.includes(':')) return
+        if (id === 'root') return
 
         const entry: SitemapEntry = { route: removeTrailingSlash(path) }
         return entry
@@ -126,7 +126,7 @@ async function getSitemapXml(
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd"
   >
-    ${sitemapEntries.map((entry) => getEntry(entry)).join("")}
+    ${sitemapEntries.map((entry) => getEntry(entry)).join('')}
   </urlset>
     `.trim()
 }

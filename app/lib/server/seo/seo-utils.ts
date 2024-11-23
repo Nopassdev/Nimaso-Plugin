@@ -1,7 +1,7 @@
-import type { BuildTagsParams, OpenGraphMedia } from "./types"
+import type { BuildTagsParams, OpenGraphMedia } from './types'
 
 const defaults = {
-  templateTitle: "",
+  templateTitle: '',
   noindex: false,
   nofollow: false,
   norobots: false,
@@ -12,7 +12,7 @@ const defaults = {
 }
 
 const buildOpenGraphMediaTags = (
-  mediaType: "image" | "video" | "audio",
+  mediaType: 'image' | 'video' | 'audio',
   media: ReadonlyArray<OpenGraphMedia> = [],
   {
     defaultWidth,
@@ -84,7 +84,7 @@ const buildTags = (config: BuildTagsParams) => {
     defaults.templateTitle = config.titleTemplate
   }
 
-  let updatedTitle = ""
+  let updatedTitle = ''
   if (config.title) {
     updatedTitle = config.title
     if (defaults.templateTitle) {
@@ -113,7 +113,7 @@ const buildTags = (config: BuildTagsParams) => {
 
   const norobots = config.norobots || defaults.norobots
 
-  let robotsParams = ""
+  let robotsParams = ''
 
   if (config.robotsProps) {
     const {
@@ -127,14 +127,14 @@ const buildTags = (config: BuildTagsParams) => {
       unavailableAfter,
     } = config.robotsProps
 
-    robotsParams = `${nosnippet ? ",nosnippet" : ""}${
-      maxSnippet ? `,max-snippet:${maxSnippet}` : ""
-    }${maxImagePreview ? `,max-image-preview:${maxImagePreview}` : ""}${
-      noarchive ? ",noarchive" : ""
-    }${unavailableAfter ? `,unavailable_after:${unavailableAfter}` : ""}${
-      noimageindex ? ",noimageindex" : ""
-    }${maxVideoPreview ? `,max-video-preview:${maxVideoPreview}` : ""}${
-      notranslate ? ",notranslate" : ""
+    robotsParams = `${nosnippet ? ',nosnippet' : ''}${
+      maxSnippet ? `,max-snippet:${maxSnippet}` : ''
+    }${maxImagePreview ? `,max-image-preview:${maxImagePreview}` : ''}${
+      noarchive ? ',noarchive' : ''
+    }${unavailableAfter ? `,unavailable_after:${unavailableAfter}` : ''}${
+      noimageindex ? ',noimageindex' : ''
+    }${maxVideoPreview ? `,max-video-preview:${maxVideoPreview}` : ''}${
+      notranslate ? ',notranslate' : ''
     }`
   }
 
@@ -151,36 +151,36 @@ const buildTags = (config: BuildTagsParams) => {
     }
 
     tagsToRender.push({
-      property: "robots",
-      content: `${noindex ? "noindex" : "index"},${
-        nofollow ? "nofollow" : "follow"
+      property: 'robots',
+      content: `${noindex ? 'noindex' : 'index'},${
+        nofollow ? 'nofollow' : 'follow'
       }${robotsParams}`,
     })
   } else if (!norobots || robotsParams) {
     tagsToRender.push({
-      name: "robots",
+      name: 'robots',
       content: `index,follow${robotsParams}`,
     })
   }
 
   if (config.description) {
     tagsToRender.push({
-      name: "description",
+      name: 'description',
       content: config.description,
     })
   }
 
   if (config.themeColor) {
     tagsToRender.push({
-      name: "theme-color",
+      name: 'theme-color',
       content: config.themeColor,
     })
   }
 
   if (config.mobileAlternate) {
     tagsToRender.push({
-      tagName: "link",
-      rel: "alternate",
+      tagName: 'link',
+      rel: 'alternate',
       media: config.mobileAlternate.media,
       href: config.mobileAlternate.href,
     })
@@ -189,8 +189,8 @@ const buildTags = (config: BuildTagsParams) => {
   if (config.languageAlternates && config.languageAlternates.length > 0) {
     config.languageAlternates.forEach((languageAlternate: any) => {
       tagsToRender.push({
-        tagName: "link",
-        rel: "alternate",
+        tagName: 'link',
+        rel: 'alternate',
         hrefLang: languageAlternate.hrefLang,
         href: languageAlternate.href,
       })
@@ -200,21 +200,21 @@ const buildTags = (config: BuildTagsParams) => {
   if (config.twitter) {
     if (config.twitter.cardType) {
       tagsToRender.push({
-        name: "twitter:card",
+        name: 'twitter:card',
         content: config.twitter.cardType,
       })
     }
 
     if (config.twitter.site) {
       tagsToRender.push({
-        name: "twitter:site",
+        name: 'twitter:site',
         content: config.twitter.site,
       })
     }
 
     if (config.twitter.handle) {
       tagsToRender.push({
-        name: "twitter:creator",
+        name: 'twitter:creator',
         content: config.twitter.handle,
       })
     }
@@ -223,7 +223,7 @@ const buildTags = (config: BuildTagsParams) => {
   if (config.facebook) {
     if (config.facebook.appId) {
       tagsToRender.push({
-        property: "fb:app_id",
+        property: 'fb:app_id',
         content: config.facebook.appId,
       })
     }
@@ -231,14 +231,14 @@ const buildTags = (config: BuildTagsParams) => {
 
   if (config.openGraph?.title || updatedTitle) {
     tagsToRender.push({
-      property: "og:title",
+      property: 'og:title',
       content: config.openGraph?.title || updatedTitle,
     })
   }
 
   if (config.openGraph?.description || config.description) {
     tagsToRender.push({
-      property: "og:description",
+      property: 'og:description',
       content: config.openGraph?.description || config.description,
     })
   }
@@ -246,7 +246,7 @@ const buildTags = (config: BuildTagsParams) => {
   if (config.openGraph) {
     if (config.openGraph.url || config.canonical) {
       tagsToRender.push({
-        property: "og:url",
+        property: 'og:url',
         content: config.openGraph.url || config.canonical,
       })
     }
@@ -255,46 +255,46 @@ const buildTags = (config: BuildTagsParams) => {
       const type = config.openGraph.type.toLowerCase()
 
       tagsToRender.push({
-        property: "og:type",
+        property: 'og:type',
         content: type,
       })
 
-      if (type === "profile" && config.openGraph.profile) {
+      if (type === 'profile' && config.openGraph.profile) {
         if (config.openGraph.profile.firstName) {
           tagsToRender.push({
-            property: "profile:first_name",
+            property: 'profile:first_name',
             content: config.openGraph.profile.firstName,
           })
         }
 
         if (config.openGraph.profile.lastName) {
           tagsToRender.push({
-            property: "profile:last_name",
+            property: 'profile:last_name',
             content: config.openGraph.profile.lastName,
           })
         }
 
         if (config.openGraph.profile.username) {
           tagsToRender.push({
-            property: "profile:username",
+            property: 'profile:username',
             content: config.openGraph.profile.username,
           })
         }
 
         if (config.openGraph.profile.gender) {
           tagsToRender.push({
-            property: "profile:gender",
+            property: 'profile:gender',
             content: config.openGraph.profile.gender,
           })
         }
-      } else if (type === "book" && config.openGraph.book) {
+      } else if (type === 'book' && config.openGraph.book) {
         if (
           config.openGraph.book.authors &&
           config.openGraph.book.authors.length
         ) {
           config.openGraph.book.authors.forEach((author: any) => {
             tagsToRender.push({
-              property: "book:author",
+              property: 'book:author',
               content: author,
             })
           })
@@ -302,14 +302,14 @@ const buildTags = (config: BuildTagsParams) => {
 
         if (config.openGraph.book.isbn) {
           tagsToRender.push({
-            property: "book:isbn",
+            property: 'book:isbn',
             content: config.openGraph.book.isbn,
           })
         }
 
         if (config.openGraph.book.releaseDate) {
           tagsToRender.push({
-            property: "book:release_date",
+            property: 'book:release_date',
             content: config.openGraph.book.releaseDate,
           })
         }
@@ -317,29 +317,29 @@ const buildTags = (config: BuildTagsParams) => {
         if (config.openGraph.book.tags && config.openGraph.book.tags.length) {
           config.openGraph.book.tags.forEach((tag: any) => {
             tagsToRender.push({
-              property: "book:tag",
+              property: 'book:tag',
               content: tag,
             })
           })
         }
-      } else if (type === "article" && config.openGraph.article) {
+      } else if (type === 'article' && config.openGraph.article) {
         if (config.openGraph.article.publishedTime) {
           tagsToRender.push({
-            property: "article:published_time",
+            property: 'article:published_time',
             content: config.openGraph.article.publishedTime,
           })
         }
 
         if (config.openGraph.article.modifiedTime) {
           tagsToRender.push({
-            property: "article:modified_time",
+            property: 'article:modified_time',
             content: config.openGraph.article.modifiedTime,
           })
         }
 
         if (config.openGraph.article.expirationTime) {
           tagsToRender.push({
-            property: "article:expiration_time",
+            property: 'article:expiration_time',
             content: config.openGraph.article.expirationTime,
           })
         }
@@ -350,7 +350,7 @@ const buildTags = (config: BuildTagsParams) => {
         ) {
           config.openGraph.article.authors.forEach((author: any) => {
             tagsToRender.push({
-              property: "article:author",
+              property: 'article:author',
               content: author,
             })
           })
@@ -358,7 +358,7 @@ const buildTags = (config: BuildTagsParams) => {
 
         if (config.openGraph.article.section) {
           tagsToRender.push({
-            property: "article:section",
+            property: 'article:section',
             content: config.openGraph.article.section,
           })
         }
@@ -369,16 +369,16 @@ const buildTags = (config: BuildTagsParams) => {
         ) {
           config.openGraph.article.tags.forEach((tag, index) => {
             tagsToRender.push({
-              property: "article:tag",
+              property: 'article:tag',
               content: tag,
             })
           })
         }
       } else if (
-        (type === "video.movie" ||
-          type === "video.episode" ||
-          type === "video.tv_show" ||
-          type === "video.other") &&
+        (type === 'video.movie' ||
+          type === 'video.episode' ||
+          type === 'video.tv_show' ||
+          type === 'video.other') &&
         config.openGraph.video
       ) {
         if (
@@ -388,14 +388,14 @@ const buildTags = (config: BuildTagsParams) => {
           config.openGraph.video.actors.forEach((actor, index) => {
             if (actor.profile) {
               tagsToRender.push({
-                property: "video:actor",
+                property: 'video:actor',
                 content: actor.profile,
               })
             }
 
             if (actor.role) {
               tagsToRender.push({
-                property: "video:actor:role",
+                property: 'video:actor:role',
                 content: actor.role,
               })
             }
@@ -408,7 +408,7 @@ const buildTags = (config: BuildTagsParams) => {
         ) {
           config.openGraph.video.directors.forEach((director, index) => {
             tagsToRender.push({
-              property: "video:director",
+              property: 'video:director',
               content: director,
             })
           })
@@ -420,7 +420,7 @@ const buildTags = (config: BuildTagsParams) => {
         ) {
           config.openGraph.video.writers.forEach((writer, index) => {
             tagsToRender.push({
-              property: "video:writer",
+              property: 'video:writer',
               content: writer,
             })
           })
@@ -428,14 +428,14 @@ const buildTags = (config: BuildTagsParams) => {
 
         if (config.openGraph.video.duration) {
           tagsToRender.push({
-            property: "video:duration",
+            property: 'video:duration',
             content: config.openGraph.video.duration.toString(),
           })
         }
 
         if (config.openGraph.video.releaseDate) {
           tagsToRender.push({
-            property: "video:release_date",
+            property: 'video:release_date',
             content: config.openGraph.video.releaseDate,
           })
         }
@@ -443,7 +443,7 @@ const buildTags = (config: BuildTagsParams) => {
         if (config.openGraph.video.tags && config.openGraph.video.tags.length) {
           config.openGraph.video.tags.forEach((tag, index) => {
             tagsToRender.push({
-              property: "video:tag",
+              property: 'video:tag',
               content: tag,
             })
           })
@@ -451,7 +451,7 @@ const buildTags = (config: BuildTagsParams) => {
 
         if (config.openGraph.video.series) {
           tagsToRender.push({
-            property: "video:series",
+            property: 'video:series',
             content: config.openGraph.video.series,
           })
         }
@@ -469,7 +469,7 @@ const buildTags = (config: BuildTagsParams) => {
 
     if (config.openGraph.images && config.openGraph.images.length) {
       tagsToRender.push(
-        ...buildOpenGraphMediaTags("image", config.openGraph.images, {
+        ...buildOpenGraphMediaTags('image', config.openGraph.images, {
           defaultWidth: defaults.defaultOpenGraphImageWidth,
           defaultHeight: defaults.defaultOpenGraphImageHeight,
         })
@@ -487,7 +487,7 @@ const buildTags = (config: BuildTagsParams) => {
 
     if (config.openGraph.videos && config.openGraph.videos.length) {
       tagsToRender.push(
-        ...buildOpenGraphMediaTags("video", config.openGraph.videos, {
+        ...buildOpenGraphMediaTags('video', config.openGraph.videos, {
           defaultWidth: defaults.defaultOpenGraphVideoWidth,
           defaultHeight: defaults.defaultOpenGraphVideoHeight,
         })
@@ -497,20 +497,20 @@ const buildTags = (config: BuildTagsParams) => {
     // audio
     if (config.openGraph.audio) {
       tagsToRender.push(
-        ...buildOpenGraphMediaTags("audio", config.openGraph.audio)
+        ...buildOpenGraphMediaTags('audio', config.openGraph.audio)
       )
     }
 
     if (config.openGraph.locale) {
       tagsToRender.push({
-        property: "og:locale",
+        property: 'og:locale',
         content: config.openGraph.locale,
       })
     }
 
     if (config.openGraph.siteName || config.openGraph.site_name) {
       tagsToRender.push({
-        property: "og:site_name",
+        property: 'og:site_name',
         content: config.openGraph.siteName || config.openGraph.site_name,
       })
     }
@@ -518,8 +518,8 @@ const buildTags = (config: BuildTagsParams) => {
 
   if (config.canonical) {
     tagsToRender.push({
-      tagName: "link",
-      rel: "canonical",
+      tagName: 'link',
+      rel: 'canonical',
       href: config.canonical,
     })
   }

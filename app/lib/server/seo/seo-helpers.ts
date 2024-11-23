@@ -1,6 +1,6 @@
-import type { MetaDescriptor, MetaFunction } from "@remix-run/node"
+import type { MetaDescriptor, MetaFunction } from '@remix-run/node'
 
-import { seoConfig } from "@/lib/brand/config"
+import { seoConfig } from '@/lib/brand/config'
 
 export const getDefaultSeoTags = () => {
   return seoConfig
@@ -28,13 +28,13 @@ export const mergeMeta = (
     for (let override of overrides) {
       let index = mergedMeta.findIndex(
         (meta) =>
-          ("name" in meta &&
-            "name" in override &&
+          ('name' in meta &&
+            'name' in override &&
             meta.name === override.name) ||
-          ("property" in meta &&
-            "property" in override &&
+          ('property' in meta &&
+            'property' in override &&
             meta.property === override.property) ||
-          ("title" in meta && "title" in override)
+          ('title' in meta && 'title' in override)
       )
       if (index !== -1) {
         mergedMeta.splice(index, 1, override)

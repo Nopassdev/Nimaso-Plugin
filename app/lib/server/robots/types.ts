@@ -1,5 +1,5 @@
 export type RobotsPolicy = {
-  type: "allow" | "disallow" | "sitemap" | "crawlDelay" | "userAgent"
+  type: 'allow' | 'disallow' | 'sitemap' | 'crawlDelay' | 'userAgent'
   value: string
 }
 

@@ -1,17 +1,17 @@
 /** @type {import('@remix-run/dev').AppConfig} */
-import { flatRoutes } from "remix-flat-routes"
+import { flatRoutes } from 'remix-flat-routes'
 
 export default {
   tailwind: true,
   postcss: true,
-  ignoredRouteFiles: ["**/*"],
+  ignoredRouteFiles: ['**/*'],
   routes: async (defineRoutes) => {
-    return flatRoutes("routes", defineRoutes, {
+    return flatRoutes('routes', defineRoutes, {
       ignoredRouteFiles: [
-        ".*",
-        "**/*.css",
-        "**/*.test.{js,jsx,ts,tsx}",
-        "**/__*.*",
+        '.*',
+        '**/*.css',
+        '**/*.test.{js,jsx,ts,tsx}',
+        '**/__*.*',
       ],
     })
   },

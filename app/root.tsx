@@ -4,15 +4,15 @@ import {
   Outlet,
   Scripts,
   ScrollRestoration,
-} from "@remix-run/react"
-import { LinksFunction } from "@remix-run/server-runtime"
-import clsx from "clsx"
+} from '@remix-run/react'
+import { LinksFunction } from '@remix-run/server-runtime'
+import clsx from 'clsx'
 
-import { RootLayout } from "./components/root-layout"
-import stylesheet from "./tailwind.css?url"
+import { RootLayout } from './components/root-layout'
+import stylesheet from './tailwind.css?url'
 
 export const links: LinksFunction = () => [
-  { rel: "stylesheet", href: stylesheet },
+  { rel: 'stylesheet', href: stylesheet },
 ]
 
 export default function AppWithProviders() {
@@ -21,7 +21,7 @@ export default function AppWithProviders() {
 
 export function App() {
   return (
-    <html lang="en" className={clsx("h-full")}>
+    <html lang="en" className={clsx('h-full')}>
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />

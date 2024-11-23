@@ -1,11 +1,11 @@
-import type { ServerBuild } from "@remix-run/server-runtime"
+import type { ServerBuild } from '@remix-run/server-runtime'
 
-import { getSitemapXml } from "./sitemap-utils.server"
-import type { SEOOptions } from "./types"
+import { getSitemapXml } from './sitemap-utils.server'
+import type { SEOOptions } from './types'
 
 export async function generateSitemap(
   request: Request,
-  routes: ServerBuild["routes"],
+  routes: ServerBuild['routes'],
   options: SEOOptions
 ) {
   const { siteUrl, headers } = options
@@ -15,8 +15,8 @@ export async function generateSitemap(
   return new Response(sitemap, {
     headers: {
       ...headers,
-      "Content-Type": "application/xml",
-      "Content-Length": String(bytes),
+      'Content-Type': 'application/xml',
+      'Content-Length': String(bytes),
     },
   })
 }

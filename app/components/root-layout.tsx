@@ -1,6 +1,6 @@
-import { FC, PropsWithChildren } from "react"
+import { FC, PropsWithChildren } from 'react'
 
-import { AppSidebar } from "./sidebar"
+import { AppSidebar } from './sidebar'
 
 type Props = PropsWithChildren<{}>
 

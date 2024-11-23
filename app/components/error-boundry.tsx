@@ -1,4 +1,4 @@
-import { useRouteError } from "@remix-run/react"
+import { useRouteError } from '@remix-run/react'
 
 type Props = {
   renderError?: (error: unknown) => React.ReactNode

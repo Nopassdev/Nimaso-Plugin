@@ -47,7 +47,7 @@ export type Step = {
 }
 
 export type StepDetails = {
-  type: "HowToTip" | "HowToDirection"
+  type: 'HowToTip' | 'HowToDirection'
   text: string
 }
 
@@ -80,7 +80,7 @@ export interface Instruction {
   image?: string
 }
 export interface Performer {
-  type?: "Person" | "PerformingGroup"
+  type?: 'Person' | 'PerformingGroup'
   name: string
 }
 export interface Place {
@@ -98,19 +98,19 @@ export interface VirtualLocation {
 export type Location = string | Place | VirtualLocation
 
 export type EventStatus =
-  | "EventCancelled"
-  | "EventMovedOnline"
-  | "EventPostponed"
-  | "EventRescheduled"
-  | "EventScheduled"
+  | 'EventCancelled'
+  | 'EventMovedOnline'
+  | 'EventPostponed'
+  | 'EventRescheduled'
+  | 'EventScheduled'
 
 export type EventAttendanceMode =
-  | "MixedEventAttendanceMode"
-  | "OfflineEventAttendanceMode"
-  | "OnlineEventAttendanceMode"
+  | 'MixedEventAttendanceMode'
+  | 'OfflineEventAttendanceMode'
+  | 'OnlineEventAttendanceMode'
 
 export interface Organizer {
-  type: "Person" | "Organization"
+  type: 'Person' | 'Organization'
   name: string
   url: string
 }
@@ -144,7 +144,7 @@ export interface Question {
   acceptedAnswerText: string
 }
 export interface Provider {
-  type?: "Organization" | "Person"
+  type?: 'Organization' | 'Person'
   name: string
   url?: string
 }
@@ -341,18 +341,18 @@ export interface RDFaMetaTag extends BaseMetaTag {
 
 export interface HTTPEquivMetaTag extends BaseMetaTag {
   httpEquiv:
-    | "content-security-policy"
-    | "content-type"
-    | "default-style"
-    | "x-ua-compatible"
-    | "refresh"
+    | 'content-security-policy'
+    | 'content-type'
+    | 'default-style'
+    | 'x-ua-compatible'
+    | 'refresh'
   name?: undefined
   property?: undefined
 }
 
 export type MetaTag = HTML5MetaTag | RDFaMetaTag | HTTPEquivMetaTag
 
-export type ImagePrevSize = "none" | "standard" | "large"
+export type ImagePrevSize = 'none' | 'standard' | 'large'
 
 export type AggregateRating = {
   ratingValue: string
@@ -362,7 +362,7 @@ export type AggregateRating = {
   worstRating?: string
 }
 
-export type GamePlayMode = "CoOp" | "MultiPlayer" | "SinglePlayer"
+export type GamePlayMode = 'CoOp' | 'MultiPlayer' | 'SinglePlayer'
 
 export type Review = {
   author: string
@@ -387,7 +387,7 @@ export type Author = {
 export type ArticleAuthor = {
   name: string
   url?: string
-  type?: "Person" | "Organization"
+  type?: 'Person' | 'Organization'
 }
 
 export type Publisher = {
@@ -405,56 +405,56 @@ export type AmenityFeature = {
   value: string | number | boolean
 }
 
-export type LocationFeatureSpecification = "LocationFeatureSpecification"
+export type LocationFeatureSpecification = 'LocationFeatureSpecification'
 
 export type DecoratedAmenityFeature = {
-  "@type": LocationFeatureSpecification
+  '@type': LocationFeatureSpecification
   name: string
   value: string | number | boolean
 }
 
 export type ApplicationCategory =
-  | "Game"
-  | "SocialNetworking"
-  | "Travel"
-  | "Shopping"
-  | "Sports"
-  | "Lifestyle"
-  | "Business"
-  | "Design"
-  | "Developer"
-  | "Driver"
-  | "Educational"
-  | "Health"
-  | "Finance"
-  | "Security"
-  | "Browser"
-  | "Communication"
-  | "DesktopEnhancement"
-  | "Entertainment"
-  | "Multimedia"
-  | "Home"
-  | "Utilities"
-  | "Reference"
+  | 'Game'
+  | 'SocialNetworking'
+  | 'Travel'
+  | 'Shopping'
+  | 'Sports'
+  | 'Lifestyle'
+  | 'Business'
+  | 'Design'
+  | 'Developer'
+  | 'Driver'
+  | 'Educational'
+  | 'Health'
+  | 'Finance'
+  | 'Security'
+  | 'Browser'
+  | 'Communication'
+  | 'DesktopEnhancement'
+  | 'Entertainment'
+  | 'Multimedia'
+  | 'Home'
+  | 'Utilities'
+  | 'Reference'
 
 export type OrganizationCategory =
-  | "Airline"
-  | "Consortium"
-  | "Corporation"
-  | "EducationalOrganization"
-  | "FundingScheme"
-  | "GovernmentOrganization"
-  | "LibrarySystem"
-  | "LocalBusiness"
-  | "MedicalOrganization"
-  | "NGO"
-  | "NewsMediaOrganization"
-  | "PerformingGroup"
-  | "Project"
-  | "ResearchOrganization"
-  | "SportsOrganization"
-  | "WorkersUnion"
-  | "Organization"
+  | 'Airline'
+  | 'Consortium'
+  | 'Corporation'
+  | 'EducationalOrganization'
+  | 'FundingScheme'
+  | 'GovernmentOrganization'
+  | 'LibrarySystem'
+  | 'LocalBusiness'
+  | 'MedicalOrganization'
+  | 'NGO'
+  | 'NewsMediaOrganization'
+  | 'PerformingGroup'
+  | 'Project'
+  | 'ResearchOrganization'
+  | 'SportsOrganization'
+  | 'WorkersUnion'
+  | 'Organization'
 
 export interface AdditionalRobotsProps {
   nosnippet?: boolean

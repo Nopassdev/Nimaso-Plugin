@@ -1,4 +1,4 @@
-import { PrismaClient } from "@prisma/client"
+import { PrismaClient } from '@prisma/client'
 
 const prisma = new PrismaClient()
 
@@ -10,6 +10,6 @@ seed()
     process.exit(1)
   })
   .finally(async () => {
-    console.log("Seeding done")
+    console.log('Seeding done')
     await prisma.$disconnect()
   })

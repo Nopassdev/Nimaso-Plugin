@@ -1,14 +1,14 @@
-import { getRobotsText } from "./robots-utils"
-import { RobotsConfig, RobotsPolicy } from "./types"
+import { getRobotsText } from './robots-utils'
+import { RobotsConfig, RobotsPolicy } from './types'
 
 const defaultPolicies: RobotsPolicy[] = [
   {
-    type: "userAgent",
-    value: "*",
+    type: 'userAgent',
+    value: '*',
   },
   {
-    type: "allow",
-    value: "/",
+    type: 'allow',
+    value: '/',
   },
 ]
 
@@ -25,8 +25,8 @@ export async function generateRobotsTxt(
   return new Response(robotText, {
     headers: {
       ...headers,
-      "Content-Type": "text/plain",
-      "Content-Length": String(bytes),
+      'Content-Type': 'text/plain',
+      'Content-Length': String(bytes),
     },
   })
 }
