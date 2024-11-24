@@ -10,7 +10,7 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
   const parsed = z
     .number({ coerce: true })
     .safeParse(url.searchParams.get('page'))
-  const page = parsed.success ? parsed.data : 1
+  const page = Math.max(parsed.success ? parsed.data : 1, 1)
 
   return getManyForms(page)
 }
