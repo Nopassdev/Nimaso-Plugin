@@ -2,7 +2,7 @@ import { useLoaderData, useNavigate, useSearchParams } from '@remix-run/react'
 import { LoaderFunctionArgs } from '@remix-run/server-runtime'
 import { z } from 'zod'
 
-import { FormModel, getManyForms } from '@/models/form'
+import { getManyForms } from '@/models/form'
 import { FormList } from '@/components/FormList'
 
 export const loader = async ({ request }: LoaderFunctionArgs) => {
@@ -26,7 +26,7 @@ export default function () {
       page={page}
       totalPage={Math.ceil(total / limit)}
       onChangePage={(newPage) => setSearch({ page: newPage.toString() })}
-      onCreateForm={() => navigate('/forms/create')}
+      onCreate={() => navigate('/forms/create')}
       onInspect={(id) => navigate(`/forms/detail/${id}`)}
     />
   )

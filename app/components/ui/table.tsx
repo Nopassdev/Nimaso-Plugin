@@ -12,7 +12,7 @@ export const BodyRow: FC<HTMLAttributes<HTMLDivElement>> = ({
     <div
       {...props}
       className={cn(
-        'flex cursor-pointer odd:bg-transparent even:bg-smoke200 hover:bg-smoke',
+        'flex cursor-pointer text-sm odd:bg-transparent even:bg-smoke200 hover:bg-smoke',
         className
       )}
     >
@@ -27,7 +27,7 @@ export const HeaderRow: FC<HTMLAttributes<HTMLDivElement>> = ({
   ...props
 }) => {
   return (
-    <div {...props} className={cn('flex bg-smoke', className)}>
+    <div {...props} className={cn('flex bg-smoke text-base', className)}>
       {children}
     </div>
   )
