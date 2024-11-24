@@ -123,7 +123,7 @@ const Item: FC<ItemProps> = ({ form, onClick }) => {
 
 const BodyRowPlaceholder = () => {
   return (
-    <BodyRow>
+    <BodyRow className='cursor-default'>
       <BodyCell className='w-[10%]'></BodyCell>
       <BodyCell className='w-[25%] justify-start'></BodyCell>
       <BodyCell className='w-[15%]'></BodyCell>

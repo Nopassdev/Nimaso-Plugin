@@ -94,7 +94,7 @@ const Item: FC<ItemProps> = ({ category: form, onClick }) => {
 
 const BodyRowPlaceholder = () => {
   return (
-    <BodyRow>
+    <BodyRow className='cursor-default'>
       <BodyCell className='w-[10%]'></BodyCell>
       <BodyCell className='w-[65%] justify-start'></BodyCell>
       <BodyCell className='w-[35%]'></BodyCell>
